@@ -1,11 +1,16 @@
 'use client';
 
-import { getToken, messaging, onMessage } from '@/lib/firebase';
+import firebaseApp from '@/lib/firebase';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 import React, { useEffect } from 'react';
 // import { messaging, getToken, onMessage } from '@/lib/firebase';
 
 export default function PushNotification() {
   useEffect(() => {
+       if (typeof window === "undefined") return;
+
+       const messaging = getMessaging(firebaseApp);
+
     Notification.requestPermission().then(async (permission) => {
       if (permission === 'granted') {
         const token = await getToken(messaging, {
