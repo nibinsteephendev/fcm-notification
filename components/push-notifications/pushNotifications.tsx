@@ -41,9 +41,18 @@ export default function PushNotification() {
       }
     });
     // Handle foreground messages
+    // onMessage(messaging, (payload) => {
+    //   console.log("Message received in foreground:", payload);
+    //   alert(payload?.notification?.title);
+    // });
     onMessage(messaging, (payload) => {
-      console.log("Message received in foreground:", payload);
-      alert(payload?.notification?.title);
+      console.log("Foreground message:", payload);
+    
+      const { title, body } = payload.data as { title: string; body: string };;
+    
+      if (Notification.permission === "granted") {
+        new Notification(title, { body });
+      }
     });
   }, []);
 
