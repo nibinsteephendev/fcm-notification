@@ -25,7 +25,6 @@ export default function PushNotification() {
         }
       }
     });
-
     // Handle foreground messages
     onMessage(messaging, (payload) => {
       console.log('Message received in foreground:', payload);
