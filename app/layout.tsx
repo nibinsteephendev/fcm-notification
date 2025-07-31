@@ -28,8 +28,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-center`}
       >
-        {children}
         <PushNotification/>
+        {children}
       </body>
     </html>
   );
